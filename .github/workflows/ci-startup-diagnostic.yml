@@ -19,7 +19,3 @@ jobs:
       - uses: actions/checkout@v4
       - name: Verify external action resolved
         run: echo "External action resolved"
-  reusable-workflow-probe:
-    uses: storytold/craft-common-actions/.github/workflows/house-rules.yml@main
-    with:
-      rust: false
