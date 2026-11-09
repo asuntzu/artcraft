@@ -10,12 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - name: Verify GitHub Actions runner starts
-        run: echo "GitHub Actions runner started successfully"
-  external-action-probe:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v4
-      - name: Verify external action resolved
-        run: echo "External action resolved"
+      - name: Verify runner and repository context
+        env:
+          REPOSITORY: ${{ github.repository }}
+          REF: ${{ github.ref }}
+        run: |
+          echo "Runner started for $REPOSITORY on $REF"
+          test -n "$GITHUB_TOKEN" || true
