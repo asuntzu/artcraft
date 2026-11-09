@@ -12,3 +12,14 @@ jobs:
     steps:
       - name: Verify GitHub Actions runner starts
         run: echo "GitHub Actions runner started successfully"
+  external-action-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify external action resolved
+        run: echo "External action resolved"
+  reusable-workflow-probe:
+    uses: storytold/craft-common-actions/.github/workflows/house-rules.yml@main
+    with:
+      rust: false
