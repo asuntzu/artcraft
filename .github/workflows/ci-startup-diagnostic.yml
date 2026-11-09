@@ -1,0 +1,19 @@
+name: CI startup diagnostic
+on:
+  push:
+    branches: [ci/diagnose-startup-failures]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Verify runner and repository context
+        env:
+          REPOSITORY: ${{ github.repository }}
+          REF: ${{ github.ref }}
+        run: |
+          echo "Runner started for $REPOSITORY on $REF"
+          test -n "$GITHUB_TOKEN" || true
