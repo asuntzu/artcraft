@@ -1,0 +1,14 @@
+name: CI startup diagnostic
+on:
+  push:
+    branches: [ci/diagnose-startup-failures]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Verify GitHub Actions runner starts
+        run: echo "GitHub Actions runner started successfully"
